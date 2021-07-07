@@ -12,7 +12,7 @@ const ContactListItem = ({ id, name, number, onDeleteContact }) => (
       type="button"
       onClick={() => onDeleteContact(id)}
     >
-      Delete
+      Выпилить
     </button>
   </li>
 );

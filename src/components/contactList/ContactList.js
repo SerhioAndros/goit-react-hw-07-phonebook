@@ -3,11 +3,11 @@ import ContactListItem from "./contactListItem/ContactListItem";
 import PropTypes from "prop-types";
 import styles from "./ContactList.module.css";
 import { connect } from "react-redux";
-import { deleteContact } from "../../redux/contacts-operations";
+import { deleteContact } from "../../redux/contacts/contacts-operations";
 import {
   getFilteredContacts,
   getContacts,
-} from "../../redux/contacts-selectors";
+} from "../../redux/contacts/contacts-selectors";
 
 const ContactList = ({ contacts, onClick }) => (
   <ul className={styles.contactList}>

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import styles from "./ContactForm.module.css";
 import { connect } from "react-redux";
-import { addContact } from "../../redux/contacts-operations";
-import { getContacts } from "../../redux/contacts-selectors";
+import { addContact } from "../../redux/contacts/contacts-operations";
+import { getContacts } from "../../redux/contacts/contacts-selectors";
 
 class ContactForm extends Component {
   state = {
@@ -41,7 +41,7 @@ class ContactForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} className={styles.addContactForm}>
         <label htmlFor={uniqueIdName} className={styles.addContactFormLabel}>
-          Name
+          Имя
         </label>
         <input
           className={styles.addContactFormInput}
@@ -53,10 +53,10 @@ class ContactForm extends Component {
           required
           value={this.state.name}
           onChange={this.handleInputChange}
-          placeholder="Name"
+          placeholder="Имя контакта"
         />
         <label htmlFor={uniqueIdNumber} className={styles.addContactFormLabel}>
-          Number
+          Телефон
         </label>
         <input
           className={styles.addContactFormInput}
@@ -67,11 +67,11 @@ class ContactForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           value={this.state.number}
           onChange={this.handleInputChange}
-          placeholder="Tel. number"
+          placeholder="Номер контакта"
         />
 
         <button type="submit" className={styles.addContactFormBtn}>
-          Add contact
+          Запилить
         </button>
       </form>
     );
