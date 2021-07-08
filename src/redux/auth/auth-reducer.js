@@ -39,6 +39,16 @@ const error = createReducer(null, {
   [logoutError]: setError,
 });
 
+const isAuthed = createReducer(false, {
+  [registerSuccess]: () => true,
+  [loginSuccess]: () => true,
+  [getCurrUserSuccess]: () => true,
+  [registerError]: () => false,
+  [loginError]: () => false,
+  [getCurrUserError]: () => false,
+  [logoutSuccess]: () => false,
+});
+
 // const loading = createReducer(null, {
 //   [registerRequest]: () => true,
 //   [registerSuccess]: () => false,
@@ -51,4 +61,4 @@ const error = createReducer(null, {
 //   [logoutError]: () => false,
 // });
 
-export default combineReducers({ user, token, error });
+export default combineReducers({ user, token, error, isAuthed });

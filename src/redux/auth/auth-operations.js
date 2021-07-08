@@ -53,7 +53,6 @@ export const login = (credentials) => async (dispatch) => {
 };
 
 export const getCurrUser = () => async (dispatch, getState) => {
-  console.log("is operation true");
   const {
     auth: { token: persistedToken },
   } = getState();

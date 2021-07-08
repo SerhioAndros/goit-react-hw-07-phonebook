@@ -1,5 +1,5 @@
 .contactItem {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 }
@@ -20,7 +20,7 @@
 .deleteContactBtn {
   font-family: "Dancing Script", cursive;
   font-size: 12px;
-  width: 55px;
+  width: 80px;
   color: white;
   background-color: rgb(89, 89, 199);
   cursor: pointer;

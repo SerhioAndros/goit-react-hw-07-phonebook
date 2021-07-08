@@ -1,4 +1,3 @@
-// import React from "react";
 import styles from "./ContactsView.module.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";

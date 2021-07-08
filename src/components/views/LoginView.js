@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth-operations";
+import styles from "./LoginView.module.css";
 
 class LoginView extends Component {
   state = {
@@ -23,11 +24,11 @@ class LoginView extends Component {
     const { email, password } = this.state;
 
     return (
-      <div>
-        <h1>Залогинься!!!</h1>
+      <div className={styles.wrapper}>
+        <h1 className={styles.loginHeader}>Залогинься!!!</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <label className={styles.label}>
             Мейл
             <input
               type="email"
@@ -37,7 +38,7 @@ class LoginView extends Component {
             />
           </label>
 
-          <label>
+          <label className={styles.label}>
             Пароль (никому не говорил же?)
             <input
               type="password"
@@ -47,7 +48,9 @@ class LoginView extends Component {
             />
           </label>
 
-          <button type="submit">Погнали!</button>
+          <button type="submit" className={styles.submitBtn}>
+            Погнали!
+          </button>
         </form>
       </div>
     );

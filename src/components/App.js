@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import ContactsView from "./views/ContactsView";
+import React, { Component, Suspense, lazy } from "react";
 import { Switch } from "react-router-dom";
 import AppBar from "./appBar/AppBar";
-import HomeView from "./views/HomeView";
-import RegistrationView from "./views/RegistrationView";
-import LoginView from "./views/LoginView";
 import { connect } from "react-redux";
 import { getCurrUser } from "../redux/auth/auth-operations";
 import PublicRoute from "./routs/PublicRoute";
 import PrivateRoute from "./routs/PrivateRoute";
+
+const HomeView = lazy(() => import("./views/HomeView"));
+const RegistrationView = lazy(() => import("./views/RegistrationView"));
+const LoginView = lazy(() => import("./views/LoginView"));
+const ContactsView = lazy(() => import("./views/ContactsView"));
 
 class App extends Component {
   componentDidMount() {
@@ -19,26 +20,28 @@ class App extends Component {
     return (
       <div>
         <AppBar />
-        <Switch>
-          <PublicRoute exact path="/" component={HomeView} />
-          <PublicRoute
-            path="/register"
-            redirectTo="/contacts"
-            restricted
-            component={RegistrationView}
-          />
-          <PublicRoute
-            path="/login"
-            redirectTo="/contacts"
-            restricted
-            component={LoginView}
-          />
-          <PrivateRoute
-            path="/contacts"
-            redirectTo="/login"
-            component={ContactsView}
-          />
-        </Switch>
+        <Suspense fallback={<p>Батя, я стараюсь!</p>}>
+          <Switch>
+            <PublicRoute exact path="/" component={HomeView} />
+            <PublicRoute
+              path="/register"
+              redirectTo="/contacts"
+              restricted
+              component={RegistrationView}
+            />
+            <PublicRoute
+              path="/login"
+              redirectTo="/contacts"
+              restricted
+              component={LoginView}
+            />
+            <PrivateRoute
+              path="/contacts"
+              redirectTo="/login"
+              component={ContactsView}
+            />
+          </Switch>
+        </Suspense>
       </div>
     );
   }
