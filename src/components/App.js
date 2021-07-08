@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { getCurrUser } from "../redux/auth/auth-operations";
 import PublicRoute from "./routs/PublicRoute";
 import PrivateRoute from "./routs/PrivateRoute";
+import styles from "./App.module.css";
+
 
 const HomeView = lazy(() => import("./views/HomeView"));
 const RegistrationView = lazy(() => import("./views/RegistrationView"));
@@ -20,7 +22,7 @@ class App extends Component {
     return (
       <div>
         <AppBar />
-        <Suspense fallback={<p>Батя, я стараюсь!</p>}>
+        <Suspense fallback={<p className={styles.loader}>Батя, я стараюсь!</p>}>
           <Switch>
             <PublicRoute exact path="/" component={HomeView} />
             <PublicRoute
