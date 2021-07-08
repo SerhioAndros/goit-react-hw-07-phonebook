@@ -53,6 +53,7 @@ export const login = (credentials) => async (dispatch) => {
 };
 
 export const getCurrUser = () => async (dispatch, getState) => {
+  console.log("is operation true");
   const {
     auth: { token: persistedToken },
   } = getState();
@@ -67,6 +68,7 @@ export const getCurrUser = () => async (dispatch, getState) => {
 
   try {
     const response = await axios.get("/users/current");
+    console.log(response.data);
     dispatch(getCurrUserSuccess(response.data));
   } catch (error) {
     dispatch(getCurrUserError(error.message));

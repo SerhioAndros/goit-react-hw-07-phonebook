@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import ContactsView from "./views/ContactsView";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import AppBar from "./appBar/AppBar";
 import HomeView from "./views/HomeView";
 import RegistrationView from "./views/RegistrationView";
 import LoginView from "./views/LoginView";
 import { connect } from "react-redux";
 import { getCurrUser } from "../redux/auth/auth-operations";
+import PublicRoute from "./routs/PublicRoute";
+import PrivateRoute from "./routs/PrivateRoute";
 
 class App extends Component {
-  state = {};
-
   componentDidMount() {
     this.props.onRefresh();
   }
@@ -20,10 +20,24 @@ class App extends Component {
       <div>
         <AppBar />
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route path="/register" component={RegistrationView} />
-          <Route path="/login" component={LoginView} />
-          <Route path="/contacts" component={ContactsView} />
+          <PublicRoute exact path="/" component={HomeView} />
+          <PublicRoute
+            path="/register"
+            redirectTo="/contacts"
+            restricted
+            component={RegistrationView}
+          />
+          <PublicRoute
+            path="/login"
+            redirectTo="/contacts"
+            restricted
+            component={LoginView}
+          />
+          <PrivateRoute
+            path="/contacts"
+            redirectTo="/login"
+            component={ContactsView}
+          />
         </Switch>
       </div>
     );
@@ -31,21 +45,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onRefresh: getCurrUser,
+  onRefresh: () => dispatch(getCurrUser()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
-
-// const App = () => (
-//   <div>
-//     <AppBar />
-//     <Switch>
-//       <Route exact path="/" component={HomeView} />
-//       <Route path="/register" component={RegistrationView} />
-//       <Route path="/login" component={LoginView} />
-//       <Route path="/contacts" component={ContactsView} />
-//     </Switch>
-//   </div>
-// );
-
-// export default App;

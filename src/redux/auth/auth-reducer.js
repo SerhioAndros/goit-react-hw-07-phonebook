@@ -2,13 +2,13 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 
 import {
-  registerRequest,
+  // registerRequest,
   registerSuccess,
   registerError,
-  loginRequest,
+  // loginRequest,
   loginSuccess,
   loginError,
-  logoutRequest,
+  // logoutRequest,
   logoutSuccess,
   logoutError,
   // getCurrUserRequest,
@@ -39,16 +39,16 @@ const error = createReducer(null, {
   [logoutError]: setError,
 });
 
-const loading = createReducer(null, {
-  [registerRequest]: () => true,
-  [registerSuccess]: () => false,
-  [registerError]: () => false,
-  [loginRequest]: () => true,
-  [loginSuccess]: () => false,
-  [loginError]: () => false,
-  [logoutRequest]: () => true,
-  [logoutSuccess]: () => false,
-  [logoutError]: () => false,
-});
+// const loading = createReducer(null, {
+//   [registerRequest]: () => true,
+//   [registerSuccess]: () => false,
+//   [registerError]: () => false,
+//   [loginRequest]: () => true,
+//   [loginSuccess]: () => false,
+//   [loginError]: () => false,
+//   [logoutRequest]: () => true,
+//   [logoutSuccess]: () => false,
+//   [logoutError]: () => false,
+// });
 
-export default combineReducers({ user, token, error, loading });
+export default combineReducers({ user, token, error });
